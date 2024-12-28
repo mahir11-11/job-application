@@ -1,0 +1,39 @@
+class Candidate:
+    def __init__(self, name, age, qualifications, experience):
+        self.name = name
+        self.age = age
+        self.qualifications = qualifications
+        self.experience = experience
+
+def is_shortlisted(candidate):
+    if candidate.age >= 25 and candidate.qualifications.lower() in ["bachelor's", "master's", "phd"] and candidate.experience >= 3:
+        return True
+    return False
+
+def main():
+    shortlisted = []
+    rejected = []
+    num_candidates = int(input("Enter the number of candidates: "))
+    
+    for _ in range(num_candidates):
+        name = input("Enter candidate's name: ")
+        age = int(input("Enter candidate's age: "))
+        qualifications = input("Enter candidate's qualifications (e.g., Bachelor's, Master's, PhD): ")
+        experience = int(input("Enter candidate's years of experience: "))
+        
+        candidate = Candidate(name, age, qualifications, experience)
+        
+        if is_shortlisted(candidate):
+            shortlisted.append(candidate)
+        else:
+            rejected.append(candidate)
+    
+    print("\n--- Shortlisted Candidates ---")
+    for candidate in shortlisted:
+        print(f"Name: {candidate.name}, Age: {candidate.age}, Qualifications: {candidate.qualifications}, Experience: {candidate.experience} years")
+    
+    print("\n--- Rejected Candidates ---")
+    for candidate in rejected:
+        print(f"Name: {candidate.name}, Age: {candidate.age}, Qualifications: {candidate.qualifications}, Experience: {candidate.experience} years")
+
+main()
